@@ -80,7 +80,7 @@ export default function RedirectClient({ decodedUrl, error }) {
                 </li>
                 <li className="flex items-start">
                   <span className="inline-block mr-2">•</span>
-                  <span>The custom alias doesn't exist</span>
+                  <span>The custom alias doesn&apos;t exist</span>
                 </li>
               </ul>
             </div>
@@ -207,7 +207,7 @@ export default function RedirectClient({ decodedUrl, error }) {
           
           <div className="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 mb-8 transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-700">
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-              You're being redirected to:
+              You&apos;re being redirected to:
             </p>
             <a 
               href={decodedUrl} 
