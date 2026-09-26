@@ -213,13 +213,10 @@ export default function Home() {
               </div>
 
               <div>
-                <div className="flex justify-between items-center mb-1.5">
+                <div className="mb-1.5">
                   <label htmlFor="customAlias" className="block text-sm font-medium text-gray-700 dark:text-gray-200">
                     Custom alias <span className="font-normal text-gray-400">(optional)</span>
                   </label>
-                  <span className="text-[11px] font-medium uppercase tracking-wide bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-800/50 px-2 py-0.5 rounded-full">
-                    Alpha
-                  </span>
                 </div>
                 <input
                   type="text"
