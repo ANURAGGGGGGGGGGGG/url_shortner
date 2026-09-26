@@ -16,13 +16,17 @@ export const metadata = {
   description: "A secure, privacy-focused URL shortener that doesn't store your data. Generate short links instantly without tracking or cookies.",
   keywords: "URL shortener, privacy, secure, no tracking, short links",
   authors: [{ name: "URL Shortener" }],
-  viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
   openGraph: {
     title: "URL Shortener",
     description: "A secure, privacy-focused URL shortener that doesn't store your data.",
     type: "website",
   },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }) {

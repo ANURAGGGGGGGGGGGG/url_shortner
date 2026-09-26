@@ -3,6 +3,11 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Strong custom easings — built-in easings lack punch */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 @theme inline {
@@ -10,6 +15,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-snappy: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,4 +30,64 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgb(37 99 235 / 0.16);
+}
+
+/* Pressable: instant feedback — scale 0.97 in 100-160ms */
+.pressable {
+  transition: transform 150ms var(--ease-out), background-color 160ms ease,
+    box-shadow 200ms var(--ease-out), border-color 160ms ease, color 160ms ease;
+}
+.pressable:active {
+  transform: scale(0.97);
+}
+
+/* Lift cards only on precise pointers — avoids tap false-positives */
+@media (hover: hover) and (pointer: fine) {
+  .lift {
+    transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+  }
+  .lift:hover {
+    transform: translateY(-3px);
+  }
+}
+@media (hover: none) {
+  .lift {
+    transition: box-shadow 200ms var(--ease-out);
+  }
+}
+
+/* Subtle field focus: border + ring, no layout shift */
+.field {
+  transition: border-color 160ms ease, box-shadow 160ms var(--ease-out),
+    background-color 160ms ease;
+}
+.field::placeholder {
+  transition: opacity 160ms ease;
+}
+
+/* Copied-state content crossfade — blur masks the swap */
+.swap {
+  transition: opacity 160ms ease, filter 160ms ease;
+}
+.swap.is-switching {
+  opacity: 0.4;
+  filter: blur(2px);
+}
+
+/* Reduced motion: keep opacity/color, drop positional movement */
+@media (prefers-reduced-motion: reduce) {
+  .pressable,
+  .lift,
+  .field,
+  .swap {
+    transition-duration: 0.01ms;
+  }
+  .pressable:active {
+    transform: none;
+  }
 }
